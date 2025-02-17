@@ -8,7 +8,7 @@ namespace XHealthWeb.Data
 {
     public static class DbInitializer
     {
-        public static void Initialize(HealthCareContext context)
+        public static void Initialize(ApplicationDbContext context)
         {
             context.Database.EnsureCreated();
 

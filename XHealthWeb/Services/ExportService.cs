@@ -11,9 +11,9 @@ namespace XHealthWeb.Services
 {
     public class ExportService : IExportService
     {
-        private readonly HealthCareContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public ExportService(HealthCareContext context)
+        public ExportService(ApplicationDbContext context)
         {
             _context = context;
         }
