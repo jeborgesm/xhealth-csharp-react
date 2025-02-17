@@ -18,7 +18,7 @@ namespace XHealthWeb.Services
             _context = context;
         }
 
-        public async Task<string> ExportAccountsToFiles(int clientId)
+        public async Task<string?> ExportAccountsToFiles(int clientId)
         {
             var client = await _context.Clients
                 .Include(c => c.Accounts)

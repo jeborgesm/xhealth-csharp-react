@@ -7,6 +7,6 @@ namespace XHealthWeb.Models
         public int NumberOfAccounts { get; set; }
         public decimal TotalBalance { get; set; }
         public DateTime ExportDate { get; set; }
-        public Client Client { get; set; }
+        public required Client Client { get; set; }
     }
 }
