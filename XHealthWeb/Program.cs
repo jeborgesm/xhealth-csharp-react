@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
-using XHealthWeb.Data;
-using XHealthWeb.Services;
+using ClientExportAPI.Data;
+using ClientExportAPI.Services;
 
 namespace XHealthWeb
 {
