@@ -13,6 +13,6 @@ namespace XHealthWeb.Data
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Insurance> Insurances { get; set; }
-        public DbSet<AccountInsurance> AccountInsurances { get; set; } // Add this line
+        public DbSet<AccountInsurance> AccountInsurances { get; set; } 
     }
 }
