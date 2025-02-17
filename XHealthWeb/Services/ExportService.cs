@@ -18,7 +18,7 @@ namespace XHealthWeb.Services
             _context = context;
         }
 
-        public async Task<string?> ExportAccountsToFiles(int clientId)
+        public async Task<string> ExportAccountsToFiles(int clientId)
         {
             var client = await _context.Clients
                 .Include(c => c.Accounts)
@@ -31,7 +31,7 @@ namespace XHealthWeb.Services
                 .FirstOrDefaultAsync(c => c.Id == clientId);
 
             if (client == null)
-                return null;
+                throw new InvalidOperationException("Client not found");
 
             var exportDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Exports");
             Directory.CreateDirectory(exportDirectory);
