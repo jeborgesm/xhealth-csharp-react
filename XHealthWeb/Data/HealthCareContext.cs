@@ -12,6 +12,7 @@ namespace XHealthWeb.Data
         public DbSet<Client> Clients { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Patient> Patients { get; set; }
-        // Add other DbSet properties as needed
+        public DbSet<Insurance> Insurances { get; set; }
+        public DbSet<AccountInsurance> AccountInsurances { get; set; } // Add this line
     }
 }
