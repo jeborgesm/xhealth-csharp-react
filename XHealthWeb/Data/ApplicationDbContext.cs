@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using ClientExportAPI.Models;
+using XHealthWeb.Models;
 
-namespace ClientExportAPI.Data
+namespace XHealthWeb.Data
 {
     public class ApplicationDbContext : DbContext
     {

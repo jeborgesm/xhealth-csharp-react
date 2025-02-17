@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using ClientExportAPI.Data;
-using ClientExportAPI.Services;
+using XHealthWeb.Data;
+using XHealthWeb.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

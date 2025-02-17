@@ -1,4 +1,4 @@
-namespace ClientExportAPI.Models
+namespace XHealthWeb.Models
 {
     public class Account
     {
