@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Client from './Client';
+import ClientFactory from './ClientFactory';
 
 const ClientList = () => {
     const [clients, setClients] = useState([]);
@@ -20,7 +20,8 @@ const ClientList = () => {
             <h1>Clients</h1>
             <ul>
                 {clients.map(client => (
-                    <Client key={client.id} client={client} />
+                    // Use the factory to create Client components
+                    ClientFactory.createClient('Client', { key: client.id, client })
                 ))}
             </ul>
         </div>
