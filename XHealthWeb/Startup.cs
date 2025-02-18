@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using XHealthWeb.Data;
 using Microsoft.EntityFrameworkCore;
+using XHealthWeb.Services;
 
 namespace XHealthWeb
 {
@@ -21,9 +22,12 @@ namespace XHealthWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddControllersWithViews();
+
+            // Register IExportService with its implementation ExportService
+            services.AddScoped<IExportService, ExportService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +55,7 @@ namespace XHealthWeb
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapFallbackToController("Index", "Home");
             });
         }
     }

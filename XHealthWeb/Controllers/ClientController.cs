@@ -10,10 +10,12 @@ namespace XHealthWeb.Controllers
     public class ClientController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<ClientController> _logger;
 
-        public ClientController(ApplicationDbContext context)
+        public ClientController(ApplicationDbContext context, ILogger<ClientController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -25,14 +27,22 @@ namespace XHealthWeb.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Client>> GetClient(int id)
         {
-            var client = await _context.Clients.FindAsync(id);
-
-            if (client == null)
+            try
             {
-                return NotFound();
-            }
+                var client = await _context.Clients.FindAsync(id);
 
-            return client;
+                if (client == null)
+                {
+                    return NotFound();
+                }
+
+                return client;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while getting the client with ID {ClientId}", id);
+                return StatusCode(500, "Internal server error");
+            }
         }
 
         [HttpPost]

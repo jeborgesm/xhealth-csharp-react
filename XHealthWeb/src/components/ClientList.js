@@ -1,6 +1,66 @@
 import React, { useEffect, useState } from 'react';
     import React, { useEffect, useState } from 'react';
     import { Link } from 'react-router-dom';
+    import axios from 'axios';
+
+    const ClientList = () => {
+        const [clients, setClients] = useState([]);
+
+        useEffect(() => {
+            axios.get('/api/client')
+                .then(response => setClients(response.data))
+                .catch(error => console.error('There was an error fetching the clients!', error));
+        }, []);
+
+        return (
+            <div>
+                <h1>Clients</h1>
+                <Link to="/add-client">Add Client</Link>
+                <ul>
+                    {clients.map(client => (
+                        <li key={client.id}>
+                            <Link to={`/client/${client.id}`}>{client.name}</Link> |
+                            <Link to={`/edit-client/${client.id}`}>Edit</Link>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        );
+    };
+
+    export default ClientList;
+    import React, { useEffect, useState } from 'react';
+    import { Link } from 'react-router-dom';
+    import axios from 'axios';
+
+    const ClientList = () => {
+        const [clients, setClients] = useState([]);
+
+        useEffect(() => {
+            axios.get('/api/client')
+                .then(response => setClients(response.data))
+                .catch(error => console.error('There was an error fetching the clients!', error));
+        }, []);
+
+        return (
+            <div>
+                <h1>Clients</h1>
+                <Link to="/add-client">Add Client</Link>
+                <ul>
+                    {clients.map(client => (
+                        <li key={client.id}>
+                            <Link to={`/client/${client.id}`}>{client.name}</Link> |
+                            <Link to={`/edit-client/${client.id}`}>Edit</Link>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        );
+    };
+
+    export default ClientList;
+    import React, { useEffect, useState } from 'react';
+    import { Link } from 'react-router-dom';
 
     const ClientList = () => {
         const [clients, setClients] = useState([]);
