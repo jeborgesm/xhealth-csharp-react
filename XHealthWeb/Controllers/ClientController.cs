@@ -19,13 +19,13 @@ namespace XHealthWeb.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Client>>> GetClients()
         {
-            return await _context.Clients.Include(c => c.Accounts).ToListAsync();
+            return await _context.Clients.ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Client>> GetClient(int id)
         {
-            var client = await _context.Clients.Include(c => c.Accounts).FirstOrDefaultAsync(c => c.Id == id);
+            var client = await _context.Clients.FindAsync(id);
 
             if (client == null)
             {
@@ -42,6 +42,55 @@ namespace XHealthWeb.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetClient), new { id = client.Id }, client);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutClient(int id, Client client)
+        {
+            if (id != client.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(client).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ClientExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteClient(int id)
+        {
+            var client = await _context.Clients.FindAsync(id);
+            if (client == null)
+            {
+                return NotFound();
+            }
+
+            _context.Clients.Remove(client);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        private bool ClientExists(int id)
+        {
+            return _context.Clients.Any(e => e.Id == id);
         }
     }
 }

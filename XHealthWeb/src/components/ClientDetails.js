@@ -43,6 +43,32 @@ const ClientDetails = () => {
     if (!client) return <div>Loading...</div>;
 
     return (
+        import React, { useEffect, useState } from 'react';
+        import { useParams } from 'react-router-dom';
+
+        const ClientDetails = () => {
+            const { id } = useParams();
+            const [client, setClient] = useState(null);
+
+            useEffect(() => {
+                fetch(`/api/client/${id}`)
+                    .then(response => response.json())
+                    .then(data => setClient(data));
+            }, [id]);
+
+            if (!client) {
+                return <div>Loading...</div>;
+            }
+
+            return (
+                <div>
+                    <h1>{client.name}</h1>
+                    <p>ID: {client.id}</p>
+                </div>
+            );
+        };
+
+        export default ClientDetails;
         <div>
             <h1>{client.name}</h1>
             <button onClick={handleExport}>Export Data</button>
