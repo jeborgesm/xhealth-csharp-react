@@ -5,3 +5,4 @@
 /XHealthWeb/obj
 /.vs
 /XHealthWeb/bin/Debug/net8.0
+/XHealthWeb/clientapp/node_modules
