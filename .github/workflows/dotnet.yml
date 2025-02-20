@@ -24,6 +24,10 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore ./XHealthWeb/XHealthWeb.csproj
 
+    - name: Install npm dependencies
+        cd XHealthWeb/clientapp
+        npm install || exit 1
+        
     - name: Build
       run: dotnet build ./XHealthWeb/XHealthWeb.csproj --no-restore
 
