@@ -1,10 +1,5 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using XHealthWeb.Data;
 using Microsoft.EntityFrameworkCore;
+using XHealthWeb.Data;
 using XHealthWeb.Services;
 
 namespace XHealthWeb
@@ -24,7 +19,7 @@ namespace XHealthWeb
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddControllersWithViews();
+            services.AddRazorPages();
 
             // Register IExportService with its implementation ExportService
             services.AddScoped<IExportService, ExportService>();
@@ -39,7 +34,7 @@ namespace XHealthWeb
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
 
@@ -52,10 +47,7 @@ namespace XHealthWeb
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapFallbackToController("Index", "Home");
+                endpoints.MapRazorPages();
             });
         }
     }
