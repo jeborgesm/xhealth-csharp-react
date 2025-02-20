@@ -24,6 +24,16 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore ./XHealthWeb/XHealthWeb.csproj
 
+    - name: Install npm dependencies
+      run: |
+        if [ -f ./XHealthWeb/clientapp/package.json ]; then
+          cd XHealthWeb/clientapp
+          npm install
+        else
+          echo "package.json not found in the specified directory."
+          exit 1
+        fi
+
     - name: Build
       run: dotnet build ./XHealthWeb/XHealthWeb.csproj --no-restore
 
