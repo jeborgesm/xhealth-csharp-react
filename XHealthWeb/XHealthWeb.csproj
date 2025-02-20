@@ -53,7 +53,7 @@
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
         <!--<Exec Command="npm install" WorkingDirectory="$(ProjectDir)clientapp" />
-        <Exec Command="npm run build" WorkingDirectory="$(ProjectDir)clientapp" />-->
-        <Exec Command="npm start" WorkingDirectory="$(ProjectDir)clientapp" />
+        <Exec Command="npm run build" WorkingDirectory="$(ProjectDir)clientapp" />
+        <Exec Command="npm start" WorkingDirectory="$(ProjectDir)clientapp" />-->
     </Target>	
 </Project>
