@@ -30,7 +30,7 @@ jobs:
         npm install || exit 1
         
     - name: Build .NET project
-      run: dotnet build ./XHealthWeb/XHealthWeb.csproj --no-restore || true
+      run: dotnet build ./XHealthWeb/XHealthWeb.csproj --no-restore /p:SkipPostBuild=true || true
 
     - name: Test
       run: dotnet test ./XHealthWeb/XHealthWeb.csproj --no-build --verbosity normal
