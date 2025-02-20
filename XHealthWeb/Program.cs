@@ -1,27 +1,43 @@
+using Microsoft.EntityFrameworkCore;
+using XHealthWeb.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddRazorPages();
 
-builder.Services.AddControllersWithViews();
+// Register ApplicationDbContext with the connection string from appsettings.json
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseExceptionHandler("/Error");
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+app.UseStaticFiles(); // Enable serving static files from wwwroot
+
 app.UseRouting();
 
+app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
+app.MapRazorPages();
+app.MapControllers();
 
-app.MapFallbackToFile("index.html");
+// Serve React app for all unknown routes
+app.MapFallbackToFile("{*path:nonfile}", "index.html");
+
+// Disable Browser Link
+app.Use((context, next) =>
+{
+    context.Response.Headers.Remove("X-BrowserLink");
+    return next();
+});
 
 app.Run();
+
