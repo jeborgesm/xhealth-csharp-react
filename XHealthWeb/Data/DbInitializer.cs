@@ -21,8 +21,8 @@ namespace XHealthWeb.Data
             // Add seed data here
             var clients = new Client[]
             {
-                    new Client{ Name="Client1", Accounts = new List<Account>() },
-                    new Client{ Name="Client2", Accounts = new List<Account>() }
+                    new Client{ Name="Client1", Phone="111-111-1111", Email="je@je.com", Accounts = new List<Account>() },
+                    new Client{ Name="Client2", Phone="111-111-1111", Email="je@je.com", Accounts = new List<Account>() }
             };
 
             foreach (Client c in clients)
