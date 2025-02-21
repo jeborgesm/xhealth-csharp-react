@@ -38,26 +38,26 @@ const EditPatient = () => {
     };
 
     return (
-        <div>
+        <div className="container mt-5">
             <h1>Edit Patient</h1>
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label>First Name:</label>
-                    <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
+                <div className="mb-3">
+                    <label className="form-label">First Name</label>
+                    <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} className="form-control" required />
                 </div>
-                <div>
-                    <label>Last Name:</label>
-                    <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
+                <div className="mb-3">
+                    <label className="form-label">Last Name</label>
+                    <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} className="form-control" required />
                 </div>
-                <div>
-                    <label>Middle Name:</label>
-                    <input type="text" value={middleName} onChange={(e) => setMiddleName(e.target.value)} required />
+                <div className="mb-3">
+                    <label className="form-label">Middle Name</label>
+                    <input type="text" value={middleName} onChange={(e) => setMiddleName(e.target.value)} className="form-control" required />
                 </div>
-                <div>
-                    <label>Social Security Number:</label>
-                    <input type="text" value={socialSecurityNumber} onChange={(e) => setSocialSecurityNumber(e.target.value)} required />
+                <div className="mb-3">
+                    <label className="form-label">Social Security Number</label>
+                    <input type="text" value={socialSecurityNumber} onChange={(e) => setSocialSecurityNumber(e.target.value)} className="form-control" required />
                 </div>
-                <button type="submit">Update Patient</button>
+                <button type="submit" className="btn btn-primary">Update Patient</button>
             </form>
         </div>
     );

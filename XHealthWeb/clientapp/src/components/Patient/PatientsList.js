@@ -29,10 +29,10 @@ const PatientsList = () => {
     };
 
     return (
-        <div>
+        <div className="container mt-5">
             <h1>Patients</h1>
-            <Link to="/add"><button>Add Patient</button></Link>
-            <table>
+            <Link to="/add-patient" className="btn btn-primary mb-3">Add Patient</Link>
+            <table className="table table-striped">
                 <thead>
                     <tr>
                         <th>First Name</th>
@@ -50,8 +50,8 @@ const PatientsList = () => {
                             <td>{patient.middleName}</td>
                             <td>{patient.socialSecurityNumber}</td>
                             <td>
-                                <Link to={`/edit/${patient.id}`}><button>Edit</button></Link>
-                                <button onClick={() => handleDelete(patient.id)}>Delete</button>
+                                <Link to={`/edit-patient/${patient.id}`} className="btn btn-secondary btn-sm">Edit</Link>
+                                <button onClick={() => handleDelete(patient.id)} className="btn btn-danger btn-sm ms-2">Delete</button>
                             </td>
                         </tr>
                     ))}
