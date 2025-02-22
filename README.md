@@ -11,8 +11,6 @@ This coding challenge is designed to allow you to demonstrate your abilities and
 The project utilizes a variety of technologies, including but not limited to:
 - React
 - C#
-- MassTransit
-- RabbitMQ
 - ASP.NET
 
 ## Installation
