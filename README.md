@@ -4,8 +4,6 @@
 **Description:** Patient Account reporting web site using CSharp and React JS.  
 **Languages:** C# (47.8%), JavaScript (46.5%), HTML (4.4%), CSS (1.3%)  
 
-This coding challenge is designed to allow you to demonstrate your abilities and discuss your approach to design and implementation with your potential colleagues. You are not expected to spend more than a few hours on the project. 
-
 ## Technology Stack
 
 The project utilizes a variety of technologies, including but not limited to:
@@ -27,12 +25,28 @@ To run this project locally, follow these steps:
    cd xhealth-csharp-react
    ```
 
-3. Install the necessary dependencies for both the backend and frontend.
-
-4. Run the project:
+3. Install the necessary backend dependencies:
    ```bash
-   // Instructions to run the backend
-   // Instructions to run the frontend
+   cd backend
+   dotnet restore
+   ```
+
+4. Install the necessary frontend dependencies:
+   ```bash
+   cd ../frontend
+   npm install
+   ```
+
+5. Run the backend:
+   ```bash
+   cd ../backend
+   dotnet run
+   ```
+
+6. Run the frontend:
+   ```bash
+   cd ../frontend
+   npm start
    ```
 
 ## Usage
@@ -80,7 +94,4 @@ The design and implementation choices will be discussed during the review. Feel 
 ## Conclusion
 
 This project aims to provide a meaningful conversation starter about your approach to solving real-world problems using a web-based application. Please be prepared to discuss the choices you’ve made regarding technologies and implementation strategies.
-
----
-
-You can adjust and expand this README file based on specific details and instructions you want to provide about your project.
+Here is the updated README file with detailed instructions on how to run the project:
