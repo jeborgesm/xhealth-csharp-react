@@ -87,11 +87,5 @@ The data is stored in the following schema:
 - **Client**
   - Id, Name
 
-## Design and Implementation
-
-The design and implementation choices will be discussed during the review. Feel free to mock out or skip pieces of the implementation and focus your time on exactly what you’d like to show us. This project is an opportunity to demonstrate the best of your abilities.
-
-## Conclusion
-
-This project aims to provide a meaningful conversation starter about your approach to solving real-world problems using a web-based application. Please be prepared to discuss the choices you’ve made regarding technologies and implementation strategies.
-Here is the updated README file with detailed instructions on how to run the project:
+## Description
+Web-based application which allows us to export data for each client along with viewing export history for each client including the number of accounts, total account balance, and export date for each export.  
