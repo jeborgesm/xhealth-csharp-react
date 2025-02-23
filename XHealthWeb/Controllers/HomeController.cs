@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
+using System.Text;
 using XHealthWeb.Data;
 using XHealthWeb.Models;
 
@@ -14,6 +16,30 @@ namespace XHealthWeb.Controllers
         public HomeController(ApplicationDbContext context)
         {
             _context = context;
+        }
+
+        //Export Accounts data to file
+        [HttpGet("export-accounts")]
+        public async Task<IActionResult> ExportAccounts()
+        {
+            var accounts = await _context.Accounts
+                .Include(a => a.Patient)
+                .ToListAsync();
+
+            var sb = new StringBuilder();
+            foreach (var account in accounts)
+            {
+                var patientName = $"{account.Patient.LastName},{account.Patient.FirstName[0]}";
+                var admitDate = account.AdmitDate.ToString("MM-dd-yyyy", CultureInfo.InvariantCulture);
+                var dischargeDate = account.DischargeDate?.ToString("MM-dd-yyyy", CultureInfo.InvariantCulture) ?? string.Empty;
+
+                sb.AppendLine($"{account.Id}|{account.AccountNumber}|{account.Balance}|{admitDate}|{dischargeDate}|{patientName}");
+            }
+
+            var fileName = $"{DateTime.Now:yyyyMMdd}-gh.data.dat";
+            var fileContent = Encoding.UTF8.GetBytes(sb.ToString());
+
+            return File(fileContent, "application/octet-stream", fileName);
         }
 
         // CRUD operations for Patient

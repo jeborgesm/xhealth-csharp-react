@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using XHealthWeb.Data;
 using XHealthWeb.Services;
 
@@ -26,7 +27,7 @@ namespace XHealthWeb
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext context)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -39,7 +40,22 @@ namespace XHealthWeb
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+
+            // Serve static files from the clientapp/public directory
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(env.ContentRootPath, "clientapp", "public")),
+                RequestPath = ""
+            });
+
+            // Configure default files to look for index.html in the clientapp/public directory
+            app.UseDefaultFiles(new DefaultFilesOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(env.ContentRootPath, "clientapp", "public")),
+                DefaultFileNames = new List<string> { "index.html" }
+            });
 
             app.UseRouting();
 
@@ -49,9 +65,6 @@ namespace XHealthWeb
             {
                 endpoints.MapRazorPages();
             });
-
-            // Apply migrations at startup
-            context.Database.Migrate();
         }
     }
 }

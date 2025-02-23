@@ -1,5 +1,8 @@
-﻿import React from 'react';
+﻿import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './assets/sb-admin-2/css/sb-admin-2.min.css'; // SB Admin 2 CSS
+import './assets/sb-admin-2/vendor/fontawesome-free/css/all.min.css'; // Font Awesome CSS
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PatientsList from './components/Patient/PatientsList';
@@ -23,12 +26,14 @@ import EditFacility from './components/Facility/EditFacility';
 import InsurancesList from './components/Insurance/InsurancesList';
 import AddInsurance from './components/Insurance/AddInsurance';
 import EditInsurance from './components/Insurance/EditInsurance';
+import ExportAccounts from './components/ExportHistory/ExportAccounts'; 
+import Dashboard from './components/Dashboard'; 
 
 const App = () => {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<PatientsList />} />
+                <Route path="/" element={<Dashboard />} />
                 <Route path="/patients" element={<PatientsList />} />
                 <Route path="/add-patient" element={<AddPatient />} />
                 <Route path="/edit-patient/:id" element={<EditPatient />} />
@@ -50,6 +55,7 @@ const App = () => {
                 <Route path="/insurances" element={<InsurancesList />} />
                 <Route path="/add-insurance" element={<AddInsurance />} />
                 <Route path="/edit-insurance/:id" element={<EditInsurance />} />
+                <Route path="/export-accounts" element={<ExportAccounts />} /> 
             </Routes>
         </Router>
     );

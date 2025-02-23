@@ -31,7 +31,7 @@ const EditPatient = () => {
         });
         if (response.ok) {
             alert('Patient updated successfully');
-            navigate('/');
+            navigate('/patients');
         } else {
             alert('Failed to update patient');
         }

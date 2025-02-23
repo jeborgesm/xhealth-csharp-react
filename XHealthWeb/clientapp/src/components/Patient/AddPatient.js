@@ -6,7 +6,7 @@ const AddPatient = () => {
     const [lastName, setLastName] = useState('');
     const [middleName, setMiddleName] = useState('');
     const [socialSecurityNumber, setSocialSecurityNumber] = useState('');
-    const history = useNavigate();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,7 +19,7 @@ const AddPatient = () => {
         });
         if (response.ok) {
             alert('Patient added successfully');
-            history.push('/');
+            navigate('/patients');
         } else {
             alert('Failed to add patient');
         }
