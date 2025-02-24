@@ -1,7 +1,9 @@
-﻿import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import 'bootstrap/dist/css/bootstrap.min.css';
+﻿import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import './assets/sb-admin-2/css/sb-admin-2.min.css'; // SB Admin 2 CSS
 import './assets/sb-admin-2/vendor/fontawesome-free/css/all.min.css'; // Font Awesome CSS
+import $ from 'jquery'; // Import jQuery
+import Popper from '@popperjs/core'; // Import Popper.js
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
